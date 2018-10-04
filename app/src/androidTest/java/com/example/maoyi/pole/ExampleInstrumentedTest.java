@@ -23,4 +23,14 @@ public class ExampleInstrumentedTest {
 
         assertEquals("com.example.maoyi.pole", appContext.getPackageName());
     }
+
+
+    @Test
+    public void demo(){
+
+        ITest i=new AppQuTaoTiao();
+        i.test();
+
+    }
+
 }

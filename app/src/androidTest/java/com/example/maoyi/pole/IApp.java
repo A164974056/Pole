@@ -1,11 +1,32 @@
 package com.example.maoyi.pole;
 
+import android.support.test.uiautomator.UiObject2;
+
+import java.util.List;
+import java.util.regex.Pattern;
+
 public interface IApp {
+
+
+    /*
+    选择按照文本内容选择 元素 严格匹配名称
+     */
+    List<UiObject2> findByText(String txt);
+
+    /*
+      选择按照文本内容选择 元素 正则表达式匹配名称
+      */
+    List<UiObject2> findByRegexText(Pattern regex);
+
+    /*
+    点击 某个 Item的方法
+     */
+    void clickItem(UiObject2 uiObject2) throws Exception;
 
     /*
     打开App
      */
-    boolean openApp();
+    void openApp() throws Exception;
 
     /*
     home 按钮
@@ -35,13 +56,47 @@ public interface IApp {
     /*
     向下滑动
      */
-    void  dowm();
+    void dowm();
+
+
+        /*
+     向右滑动
+      */
+    void right(int count) throws InterruptedException;
 
     /*
-    单机某个Item
+    向右滑动
      */
-    void clickItem();
+    void left(int count) throws InterruptedException;
+
+    /*
+    向上滑动
+     */
+    void up(int count) throws InterruptedException;
+
+    /*
+    向下滑动
+     */
+    void dowm(int count) throws InterruptedException;
+
+    /*
+    刷新
+     */
+    void refresh();
 
 
+    /*
+    处理怎么去更新APP 一般为不更新
+     */
+    void updateApp();
 
+    /*
+    签到
+     */
+    void checkIn();
+
+    /*
+    定义怎么读取咨询
+     */
+    void readItem() throws Exception;
 }
