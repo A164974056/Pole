@@ -1,19 +1,21 @@
 package com.example.maoyi.pole;
 
+import android.support.test.espresso.AppNotIdleException;
 import android.support.test.uiautomator.UiObject2;
 
 import java.util.List;
 
 public class AppQuTaoTiao extends AbsApp {
-    @Override
-    public void getAppName() {
-        appName = "趣头条";
+
+
+
+    public  AppQuTaoTiao( int readCount)
+    {
+        appName="趣头条";
+        this.readCount=readCount;
     }
 
-    @Override
-    public void getReadCount() {
-        readCount=7;
-    }
+
 
 
     @Override
@@ -26,12 +28,18 @@ public class AppQuTaoTiao extends AbsApp {
             checkIn();
             Thread.sleep(500);
             refresh();
-            Thread.sleep(2000);
+            Thread.sleep(4000);
             readItem();
         } catch (Exception e) {
 
             LogHandle.d(e.getMessage());
 
+        }
+        finally {
+            back();
+            back();
+            back();
+            back();
         }
     }
 

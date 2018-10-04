@@ -41,43 +41,43 @@ public interface IApp {
     /*
     向右滑动
      */
-    void right();
+    void right(int steps);
 
     /*
     向右滑动
      */
-    void left();
+    void left(int steps);
 
     /*
     向上滑动
      */
-    void up();
+    void up(int steps);
 
     /*
     向下滑动
      */
-    void dowm();
+    void dowm(int steps);
 
 
         /*
      向右滑动
       */
-    void right(int count) throws InterruptedException;
+    void right(int steps,int count) throws InterruptedException;
 
     /*
     向右滑动
      */
-    void left(int count) throws InterruptedException;
+    void left(int steps,int count) throws InterruptedException;
 
     /*
     向上滑动
      */
-    void up(int count) throws InterruptedException;
+    void up(int steps,int count) throws InterruptedException;
 
     /*
     向下滑动
      */
-    void dowm(int count) throws InterruptedException;
+    void dowm(int steps,int count) throws InterruptedException;
 
     /*
     刷新

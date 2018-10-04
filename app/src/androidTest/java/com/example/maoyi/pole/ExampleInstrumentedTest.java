@@ -28,7 +28,7 @@ public class ExampleInstrumentedTest {
     @Test
     public void demo(){
 
-        ITest i=new AppQuTaoTiao();
+        ITest i=new AppQuTaoTiao(7);
         i.test();
 
     }

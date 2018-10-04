@@ -15,14 +15,11 @@ public abstract class AbsApp implements IApp, ITest {
     private UiDevice uiDevice;
     public String appName;
 
-
-    public  int readCount;
+    public int readCount;
 
     private int height;
     private int width;
 
-    public abstract void getAppName();
-    public abstract void getReadCount();
 
     @Override
     public void updateApp() {
@@ -58,26 +55,32 @@ public abstract class AbsApp implements IApp, ITest {
 
         while (true) {
             int count = readCount;
+            String cur = "";
             for (int i = 0; i < 5; i++) {
                 List<UiObject2> lis = findByRegexText(Pattern.compile("\\d{1,9}评"));
                 if (lis.size() > 0) {
+                    if (cur.equals(lis.get(0).getText())) {
+                        continue;
+                    }
+                    cur = lis.get(0).getText();
                     lis.get(0).click();
                     readCount--;
                     //region  上下滑动几下
                     Thread.sleep(2000);
-                    up(8);
-                    dowm(8);
+                    up(100, 8);
+                    dowm(100, 1);
                     //endregion
                     back();
                 }
                 //往下刷两下
-                up();
-                up();
-            }
-            if (count==readCount)
-                throw new Exception("遇到未知错误无法在继续读");
-            if( readCount==0){
-                return;
+                up(200);
+                //up(50);
+
+                if (count == readCount)
+                    throw new Exception("遇到未知错误无法在继续读");
+                if (readCount < 0) {
+                    return;
+                }
             }
         }
 
@@ -112,7 +115,7 @@ public abstract class AbsApp implements IApp, ITest {
     public void openApp() throws Exception {
 
         if (appName == null)
-            getAppName();
+            throw new Exception("未设置AppName " );
         if (uiDevice == null)
             setUiDevice();
         home();
@@ -131,7 +134,7 @@ public abstract class AbsApp implements IApp, ITest {
                     break;
                 }
             }
-            left();
+            left(20);
         }
         throw new Exception("未找到对应的App " + appName);
     }
@@ -147,53 +150,53 @@ public abstract class AbsApp implements IApp, ITest {
     }
 
     @Override
-    public void right() {
-        uiDevice.swipe((int) (width * 0.25), (int) (height * 0.5), (int) (width * 0.75), (int) (height * 0.5), 20);
+    public void right(int steps) {
+        uiDevice.swipe((int) (width * 0.25), (int) (height * 0.5), (int) (width * 0.75), (int) (height * 0.5), steps);
     }
 
     @Override
-    public void left() {
-        uiDevice.swipe((int) (width * 0.75), (int) (height * 0.5), (int) (width * 0.25), (int) (height * 0.5), 20);
+    public void left(int steps) {
+        uiDevice.swipe((int) (width * 0.75), (int) (height * 0.5), (int) (width * 0.25), (int) (height * 0.5), steps);
     }
 
     @Override
-    public void up() {
-        uiDevice.swipe((int) (width * 0.5), (int) (height * 0.75), (int) (width * 0.5), (int) (height * 0.25), 20);
+    public void up(int steps) {
+        uiDevice.swipe((int) (width * 0.5), (int) (height * 0.75), (int) (width * 0.5), (int) (height * 0.25), steps);
     }
 
     @Override
-    public void dowm() {
-        uiDevice.swipe((int) (width * 0.5), (int) (height * 0.25), (int) (width * 0.5), (int) (height * 0.75), 20);
+    public void dowm(int steps) {
+        uiDevice.swipe((int) (width * 0.5), (int) (height * 0.25), (int) (width * 0.5), (int) (height * 0.75), steps);
     }
 
     @Override
-    public void right(int count) throws InterruptedException {
+    public void right(int steps, int count) throws InterruptedException {
         for (int i = 0; i < count; i++) {
-            right();
+            right(steps);
             Thread.sleep(2000 + new Random().nextInt(2000));
         }
     }
 
     @Override
-    public void left(int count) throws InterruptedException {
+    public void left(int steps, int count) throws InterruptedException {
         for (int i = 0; i < count; i++) {
-            left();
+            left(steps);
             Thread.sleep(2000 + new Random().nextInt(2000));
         }
     }
 
     @Override
-    public void up(int count) throws InterruptedException {
+    public void up(int steps, int count) throws InterruptedException {
         for (int i = 0; i < count; i++) {
-            up();
+            up(steps);
             Thread.sleep(2000 + new Random().nextInt(500));
         }
     }
 
     @Override
-    public void dowm(int count) throws InterruptedException {
+    public void dowm(int steps, int count) throws InterruptedException {
         for (int i = 0; i < count; i++) {
-            dowm();
+            dowm(steps);
             Thread.sleep(2000 + new Random().nextInt(2000));
         }
     }
