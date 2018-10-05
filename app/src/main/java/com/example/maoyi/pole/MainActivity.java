@@ -1,24 +1,37 @@
 package com.example.maoyi.pole;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.PixelFormat;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
 
+    private static final String TAG = "MainActivity";
 
     private homeFragment fragment1;
     private hotFragment fragment2;
@@ -91,42 +104,157 @@ public class MainActivity extends AppCompatActivity {
     private WindowManager windowManager;
     private Button button;
 
-    /**
-     * 点击按钮对应的方法
-     *
-     * @param v
-     */
+
+    @SuppressLint({"ClickableViewAccessibility", "SetTextI18n"})
     public void runMyUiautomator(View v) {
-        button = new Button(this);
-        button.setText("悬浮窗 Zhang Phil @CSDN");
-        button.setOnClickListener(new View.OnClickListener() {
+        final Button btn1Start= new Button(this);
+        final Button btnEnd = new Button(this);
+        final LinearLayout frameLayout=new LinearLayout(this);
+        frameLayout.setOrientation(LinearLayout.HORIZONTAL);
+
+        btn1Start.setGravity(Gravity.CENTER);
+        btnEnd.setGravity(Gravity.CENTER);
+        //textView.setBackgroundColor(Color.BLACK);
+        btn1Start.setText("开始");
+        btnEnd.setText("结束");
+        btn1Start.setTextSize(10);
+        btnEnd.setTextSize(10);
+        btn1Start.setTextColor(Color.RED);
+        btnEnd.setTextColor(Color.BLUE);
+
+        //frameLayout.setBackgroundColor(Color.TRANSPARENT);
+        //frameLayout.setLayoutParams(new LinearLayout.LayoutParams(100,WRAP_CONTENT));
+        frameLayout.addView(btn1Start);
+        frameLayout.addView(btnEnd);
+        //类型是TYPE_TOAST，像一个普通的AndroidToast一样。这样就不需要申请悬浮窗权限了。
+        final WindowManager.LayoutParams params = new
+                WindowManager.LayoutParams(WindowManager.LayoutParams.TYPE_PHONE);
+
+        //初始化后不首先获得窗口焦点。不妨碍设备上其他部件的点击、触摸事件。
+        params.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+        params.gravity=Gravity.TOP;
+        params.width = 400;
+        params.height = 150;
+        //params.gravity=Gravity.BOTTOM;
+        params.alpha = 0.8f;
+         final WindowManager windowManager = (WindowManager)
+                getApplication().getSystemService(WINDOW_SERVICE);
+         /*
+         拖动
+          */
+        frameLayout.setOnTouchListener(new View.OnTouchListener() {
+            long startTime;
+            long endTime;
+            float mTouchStartX;
+            float mTouchStartY;
+            boolean isClick=false;
             @Override
-            public void onClick(View v) {                // 作为测试，点击后删除该悬浮窗（即Button按钮）
-                windowManager.removeView(button);
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                int x = (int) motionEvent.getRawX();
+                int y = (int) motionEvent.getRawY();
+                int action = motionEvent.getAction();
+                switch (action) {
+                    case MotionEvent.ACTION_DOWN:
+                        startTime = System.currentTimeMillis();
+                        mTouchStartX = motionEvent.getX();
+                        mTouchStartY = motionEvent.getY();
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        float moveX = motionEvent.getX();
+                        float moveY = motionEvent.getY();
+                        if (Math.abs(mTouchStartX - moveX) > 3 && Math.abs(mTouchStartY - moveY) > 3) {
+                            params.x = (int)(x- mTouchStartX);
+                            params.y = (int)(y - mTouchStartY);
+                            assert windowManager != null;
+                            windowManager.updateViewLayout(frameLayout,params);
+                            return false;
+                        }
+                    case MotionEvent.ACTION_UP:
+                        endTime = System.currentTimeMillis();
+                        isClick = endTime - startTime < 3 * 1000L;
+                        break;
+                }
+
+                return true;
             }
         });
-        windowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
-        WindowManager.LayoutParams params = new WindowManager.LayoutParams();
-        // 靠手机屏幕的左边居中显示
-        // 类型
-        params.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
-        // WindowManager.LayoutParams.TYPE_SYSTEM_ALERT
-        // 设置flag
-        int flags = WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM;
-        // | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
-        // 如果设置了WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE，弹出的View收不到Back键的事件
-        params.flags = flags;
-        // 不设置这个弹出框的透明遮罩显示为黑色
-        params.format = PixelFormat.TRANSLUCENT;
-        // FLAG_NOT_TOUCH_MODAL不阻塞事件传递到后面的窗口
-        // 设置 FLAG_NOT_FOCUSABLE 悬浮窗口较小时，后面的应用图标由不可长按变为可长按
-        // 不设置这个flag的话，home页的划屏会有问题
 
-        params.gravity = Gravity.CENTER;
-        windowManager.addView(button, params);
-        moveTaskToBack(true);
 
-// 更新
-// windowManager.updateViewLayout(button, params);
+        final UiautomatorThread[] uiautomatorThread = new UiautomatorThread[1];
+
+        /*
+        开始
+        */
+        btn1Start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(!btn1Start.isEnabled()) {
+                    Toast.makeText(getApplication(), "已经开始了,无法在开始....", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                btn1Start.setEnabled(false);
+                Toast.makeText(getApplication(), "开始啦！", Toast.LENGTH_SHORT).show();
+                Log.i(TAG, "runMyUiautomator: ");
+                uiautomatorThread[0] = new UiautomatorThread();
+                uiautomatorThread[0].start();
+            }
+        });
+
+        /*
+        结束
+         */
+        btnEnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(btn1Start.isEnabled()) {
+                    Toast.makeText(getApplication(), "已经结束啦了,无法在结束....", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                btn1Start.setEnabled(true);
+                Toast.makeText(getApplication(), "结束啦！", Toast.LENGTH_SHORT).show();
+              if(  uiautomatorThread[0]!=null)
+                  uiautomatorThread[0].stop();
+            }
+        });
+        assert windowManager != null;
+        windowManager.addView(frameLayout, params);
+
+
     }
+
+
+
+
+    /**
+     * 运行uiautomator是个费时的操作，不应该放在主线程，因此另起一个线程运行
+     */
+    class UiautomatorThread extends Thread {
+        @Override
+        public void run() {
+            super.run();
+            String command=generateCommand("com.example.maoyi.pole", "ExampleInstrumentedTest", "demo");
+            CMDUtils.CMD_Result rs= CMDUtils.runCMD(command,true,true);
+            Log.e(TAG, "run: " + rs.error + "-------" + rs.success);
+        }
+
+        /**
+         * 生成命令
+         * @param pkgName 包名
+         * @param clsName 类名
+         * @param mtdName 方法名
+         * @return
+         */
+        public  String generateCommand(String pkgName, String clsName, String mtdName) {
+            String command = "su -c am instrument --user 0 -w -r   -e debug false -e class '"
+                    + pkgName + "." + clsName + "#" + mtdName + "' "
+                    + pkgName + ".test/android.support.test.runner.AndroidJUnitRunner";
+            Log.e("test1: ", command);
+            return command;
+        }
+    }
+
+
 }

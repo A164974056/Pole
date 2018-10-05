@@ -20,5 +20,6 @@
     <string name="zhongqingkandian"> 中青看点： </string>
     <string name="start">开始</string>
     <string name="r_number">刷新次数：</string>
+    <string name="openXF">打开悬浮</string>
 
 </resources>

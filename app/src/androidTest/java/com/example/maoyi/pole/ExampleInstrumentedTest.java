@@ -7,6 +7,9 @@ import android.support.test.runner.AndroidJUnit4;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+
+
+
 import static org.junit.Assert.*;
 
 /**
@@ -28,7 +31,7 @@ public class ExampleInstrumentedTest {
     @Test
     public void demo(){
 
-        ITest i=new AppQuTaoTiao(7);
+        ITest i=new AppQuTaoTiao(1);
         i.test();
 
     }
