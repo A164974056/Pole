@@ -9,31 +9,35 @@ public class AppQuTaoTiao extends AbsApp {
 
 
 
-    public  AppQuTaoTiao( int readCount)
+    public  AppQuTaoTiao()
     {
         appName="趣头条";
-        this.readCount=readCount;
+
     }
 
-
+    @Override
+    public void setReadCount(Integer count)
+    {
+        this.readCount=count;
+    }
 
 
     @Override
     public void test() {
         try {
             openApp();
-            Thread.sleep(6000);
+            Thread.sleep(8000);
             updateApp();
             Thread.sleep(500);
             checkIn();
             Thread.sleep(500);
+            timepoint();
+            Thread.sleep(1000);
             refresh();
-            Thread.sleep(4000);
+            Thread.sleep(5000);
             readItem();
         } catch (Exception e) {
-
             LogHandle.d(e.getMessage());
-
         }
         finally {
             back();
@@ -42,6 +46,7 @@ public class AppQuTaoTiao extends AbsApp {
             back();
         }
     }
+
 
 
 }

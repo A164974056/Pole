@@ -19,6 +19,13 @@ public interface IApp {
     List<UiObject2> findByRegexText(Pattern regex);
 
     /*
+     选择按照ID
+     */
+    List<UiObject2> findByID(String id);
+
+
+
+    /*
     点击 某个 Item的方法
      */
     void clickItem(UiObject2 uiObject2) throws Exception;
@@ -93,7 +100,13 @@ public interface IApp {
     /*
     签到
      */
-    void checkIn();
+    void checkIn() throws Exception;
+
+
+    /*
+    整点
+     */
+    void timepoint();
 
     /*
     定义怎么读取咨询

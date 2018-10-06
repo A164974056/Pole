@@ -23,7 +23,7 @@ public abstract class AbsApp implements IApp, ITest {
 
     @Override
     public void updateApp() {
-        List<UiObject2> lis = findByText("以后更新");
+        List<UiObject2> lis = findByID("以后更新");
         if (lis.size() > 0) {
             lis.get(0).click();
             back();
@@ -40,8 +40,48 @@ public abstract class AbsApp implements IApp, ITest {
 
     }
 
+
+
+
     @Override
-    public void checkIn() {
+    public void checkIn() throws Exception {
+
+        List<UiObject2> lis=findByText("我的");
+        if  (lis.size()==1){
+            lis.get(0).click();
+            Thread.sleep(1000+new Random().nextInt(500));
+        }
+        else {
+            throw new Exception("遇到错误， 未找到我的");
+        }
+
+        lis=findByID("com.jifen.qukan:id/p2");
+        if  (lis.size()==1){
+            lis.get(0).click();
+            Thread.sleep(1000+new Random().nextInt(500));
+        }
+
+        lis=findByText("签到");
+        if  (lis.size()==1){
+            lis.get(0).click();
+            Thread.sleep(1000+new Random().nextInt(500));
+        }
+
+        lis=findByText("头条");
+        if  (lis.size()==1){
+            lis.get(0).click();
+            Thread.sleep(1000+new Random().nextInt(500));
+        }
+        else {
+            throw new Exception("遇到错误， 未找到我的");
+        }
+
+    }
+
+
+
+    @Override
+    public void timepoint() {
         List<UiObject2> lis = findByText("领取");
         if (lis.size() > 0) {
             lis.get(0).click();
@@ -49,22 +89,27 @@ public abstract class AbsApp implements IApp, ITest {
             LogHandle.e("未找到领取按钮");
     }
 
-
     @Override
     public void readItem() throws Exception {
-
+        int count = readCount;
         while (true) {
-            int count = readCount;
+
             String cur = "";
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < count; i++) {
                 List<UiObject2> lis = findByRegexText(Pattern.compile("\\d{1,9}评"));
                 if (lis.size() > 0) {
+
+                    readCount--;
+                    if (readCount < 0) {
+                        return;
+                    }
+
                     if (cur.equals(lis.get(0).getText())) {
                         continue;
                     }
                     cur = lis.get(0).getText();
                     lis.get(0).click();
-                    readCount--;
+
                     //region  上下滑动几下
                     Thread.sleep(2000);
                     up(100, 8);
@@ -78,9 +123,7 @@ public abstract class AbsApp implements IApp, ITest {
 
                 if (count == readCount)
                     throw new Exception("遇到未知错误无法在继续读");
-                if (readCount < 0) {
-                    return;
-                }
+
             }
         }
 
@@ -102,6 +145,13 @@ public abstract class AbsApp implements IApp, ITest {
     public List<UiObject2> findByRegexText(Pattern regex) {
         return uiDevice.findObjects(By.text(regex));
     }
+
+
+    @Override
+    public List<UiObject2> findByID(String id){
+        return uiDevice.findObjects(By.res(id));
+    }
+
 
     @Override
     public void clickItem(UiObject2 uiObject2) throws Exception {

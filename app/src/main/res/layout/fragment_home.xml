@@ -34,6 +34,12 @@
                         android:text="0" />
 
                     <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/times" />
+
+                    <TextView
                         android:id="@+id/textView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -47,7 +53,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <TextView
+                <TextView
                         android:text="@string/quduopai"
                         tools:ignore="HardcodedText" />
 
@@ -60,8 +66,14 @@
                         android:inputType="number"
                         android:text="0" />
 
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/times" />
 
-                </TableRow>
+
+            </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -80,6 +92,12 @@
                         android:inputType="number"
                         android:text="0" />
 
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/times" />
+
 
                 </TableRow>
 
@@ -95,12 +113,18 @@
                         android:text="@string/r_number" />
 
                     <EditText
-                        android:id="@+id/editText2"
+                        android:id="@+id/times"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="5"
                         android:inputType="number"
                         android:text="0" />
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/times_quan" />
                 </TableRow>
 
             </TableLayout>
@@ -112,7 +136,7 @@
             android:layout_span="4"
 
             android:onClick="runMyUiautomator"
-            android:text="@string/openXF" />
+            android:text="@string/start" />
 
     </LinearLayout>
 
