@@ -11,7 +11,7 @@ import static java.lang.Thread.*;
 public class AppQuDuoPai extends AbsApp implements ITest {
 
 
-    public AppQuDuoPai() {
+    AppQuDuoPai() {
         appName = "趣多拍";
     }
 
@@ -19,7 +19,7 @@ public class AppQuDuoPai extends AbsApp implements ITest {
     public void readItem() throws Exception {
         int count = readCount;
         while (true) {
-            for (int i = 0; i < count; i++) {
+            for (int i = 0; i < 5; i++) {
                 List<UiObject2> lis = findByText("首页");
                 if (lis.size() == 1) {
                     lis.get(0).click();
@@ -79,12 +79,12 @@ public class AppQuDuoPai extends AbsApp implements ITest {
 
 
     @Override
-    public void test() throws Exception {
+    public void test()  {
 
 
         try {
             openApp();
-            Thread.sleep(8000);
+            Thread.sleep(10000);
 //            updateApp();
 //            Thread.sleep(500);
             checkIn();

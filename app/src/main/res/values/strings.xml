@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">北极星 -- 看点助手</string>
+    <string name="app_name">北极星 — 看点助手</string>
     <string name="title_home">首页</string>
     <string name="title_dashboard">热点</string>
     <string name="title_notifications">个人中心</string>
@@ -23,5 +23,6 @@
     <string name="openXF">打开悬浮</string>
     <string name="times">  次/圈/\t  </string>
     <string name="times_quan">圈</string>
+    <string name="wlkk">微鲤看看</string>
 
 </resources>

@@ -9,9 +9,10 @@ public class AppZhongQinKanDian extends AbsApp implements ITest {
 
 
 
-    public  AppZhongQinKanDian()
+    AppZhongQinKanDian()
     {
         appName="中青看点";
+        appOpenFlag="刷新";
     }
 
 
@@ -68,11 +69,12 @@ public class AppZhongQinKanDian extends AbsApp implements ITest {
         while (true) {
 
             String cur = "";
-            for (int i = 0; i < count; i++) {
+            for (int i = 0; i < 5; i++) {
                 up(200);
+                readCount--;
                 List<UiObject2> lis = findByRegexText(Pattern.compile("\\d{1,9}阅读"));
                 if (lis.size() > 0) {
-                    readCount--;
+
                     if (readCount < 0) {
                         return;
                     }
@@ -108,7 +110,7 @@ public class AppZhongQinKanDian extends AbsApp implements ITest {
 
         try {
             openApp();
-            Thread.sleep(8000);
+            Thread.sleep(10000);
             updateApp();
             Thread.sleep(100);
             refresh();

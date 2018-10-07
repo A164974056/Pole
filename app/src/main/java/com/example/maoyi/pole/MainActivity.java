@@ -264,9 +264,11 @@ public class MainActivity extends AppCompatActivity {
             int qtt= parseInt(((EditText)findViewById(R.id.qtt)).getText().toString());
             int zqkd=parseInt(((EditText)findViewById(R.id.zqkd)).getText().toString());
             int qdp=parseInt(((EditText)findViewById(R.id.qdp)).getText().toString());
+
+            int wlkk=parseInt(((EditText)findViewById(R.id.wlkk)).getText().toString());
             int times=parseInt(((EditText)findViewById(R.id.times)).getText().toString());
 
-            String s=times+ "#"+0+"_"+qtt + "#"+1+"_"+zqkd+ "#"+2+"_"+qdp;
+            String s=times+ "#"+0+"_"+qtt + "#"+1+"_"+zqkd+ "#"+2+"_"+qdp+ "#"+3+"_"+wlkk;
 
             String command = "su -c am instrument --user 0 -w -r -e debug false -e key "+s+" -e class '"
                     + pkgName + "." + clsName + "#" + mtdName + "' "

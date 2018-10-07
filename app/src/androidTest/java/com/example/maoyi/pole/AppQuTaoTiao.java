@@ -8,25 +8,22 @@ import java.util.List;
 public class AppQuTaoTiao extends AbsApp {
 
 
-
-    public  AppQuTaoTiao()
-    {
-        appName="趣头条";
-
+    AppQuTaoTiao() {
+        appName = "趣头条";
+        appOpenFlag = "刷新";
     }
 
     @Override
-    public void setReadCount(Integer count)
-    {
-        this.readCount=count;
+    public void setReadCount(Integer count) {
+        this.readCount = count;
     }
 
 
     @Override
-    public void test() {
+    public void test()  {
         try {
             openApp();
-            Thread.sleep(8000);
+            Thread.sleep(10000);
             updateApp();
             Thread.sleep(500);
             checkIn();
@@ -38,15 +35,13 @@ public class AppQuTaoTiao extends AbsApp {
             readItem();
         } catch (Exception e) {
             LogHandle.d(e.getMessage());
-        }
-        finally {
+        } finally {
             back();
             back();
             back();
             back();
         }
     }
-
 
 
 }

@@ -15,6 +15,9 @@ public abstract class AbsApp implements IApp, ITest {
     private UiDevice uiDevice;
     public String appName;
 
+
+    public  String appOpenFlag="首页";
+
     public int readCount;
 
     private int height;
@@ -93,23 +96,20 @@ public abstract class AbsApp implements IApp, ITest {
     public void readItem() throws Exception {
         int count = readCount;
         while (true) {
-
             String cur = "";
             for (int i = 0; i < count; i++) {
+                readCount--;
                 List<UiObject2> lis = findByRegexText(Pattern.compile("\\d{1,9}评"));
                 if (lis.size() > 0) {
-
-                    readCount--;
                     if (readCount < 0) {
                         return;
                     }
-
                     if (cur.equals(lis.get(0).getText())) {
+                        up(200);
                         continue;
                     }
                     cur = lis.get(0).getText();
                     lis.get(0).click();
-
                     //region  上下滑动几下
                     Thread.sleep(2000);
                     up(100, 8);
@@ -121,7 +121,7 @@ public abstract class AbsApp implements IApp, ITest {
                 up(200);
                 //up(50);
 
-                if (count == readCount)
+                if (count <0)
                     throw new Exception("遇到未知错误无法在继续读");
 
             }
@@ -169,6 +169,7 @@ public abstract class AbsApp implements IApp, ITest {
         if (uiDevice == null)
             setUiDevice();
         home();
+        List<UiObject2> lis=null;
         height = Objects.requireNonNull(uiDevice).getDisplayHeight();
         width = Objects.requireNonNull(uiDevice).getDisplayWidth();
         for (int i = 0; i < 4; i++) {
@@ -179,6 +180,7 @@ public abstract class AbsApp implements IApp, ITest {
                 case 1: {
                     clickItem(list.get(0));
                     return;
+                    //throw new Exception("未找到首页 " + appName);
                 }
                 default: {
                     break;
@@ -186,6 +188,8 @@ public abstract class AbsApp implements IApp, ITest {
             }
             left(20);
         }
+
+
         throw new Exception("未找到对应的App " + appName);
     }
 
