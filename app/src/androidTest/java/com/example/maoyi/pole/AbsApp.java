@@ -97,11 +97,11 @@ public abstract class AbsApp implements IApp, ITest {
         int count = readCount;
         while (true) {
             String cur = "";
-            for (int i = 0; i < count; i++) {
-                readCount--;
+            for (int i = 0; i < 5; i++) {
+                count--;
                 List<UiObject2> lis = findByRegexText(Pattern.compile("\\d{1,9}评"));
                 if (lis.size() > 0) {
-                    if (readCount < 0) {
+                    if (count < 0) {
                         return;
                     }
                     if (cur.equals(lis.get(0).getText())) {

@@ -155,7 +155,7 @@ public class AppWeiLiKankan extends AbsApp implements ITest {
     public void test() {
         try {
             openApp();
-            Thread.sleep(10000);
+            Thread.sleep(12000);
             updateApp();
             refresh();
             Thread.sleep(5000);
@@ -167,6 +167,9 @@ public class AppWeiLiKankan extends AbsApp implements ITest {
         } catch (Exception e) {
             LogHandle.d(e.getMessage());
         } finally {
+            back();
+            back();
+            back();
             back();
             back();
             back();

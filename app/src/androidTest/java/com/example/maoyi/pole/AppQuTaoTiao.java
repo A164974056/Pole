@@ -23,19 +23,22 @@ public class AppQuTaoTiao extends AbsApp {
     public void test()  {
         try {
             openApp();
-            Thread.sleep(10000);
+            Thread.sleep(12000);
             updateApp();
-            Thread.sleep(500);
+            Thread.sleep(2000);
             checkIn();
-            Thread.sleep(500);
+            Thread.sleep(2000);
             timepoint();
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             refresh();
             Thread.sleep(5000);
             readItem();
         } catch (Exception e) {
             LogHandle.d(e.getMessage());
         } finally {
+            back();
+            back();
+            back();
             back();
             back();
             back();

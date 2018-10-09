@@ -110,9 +110,9 @@ public class AppZhongQinKanDian extends AbsApp implements ITest {
 
         try {
             openApp();
-            Thread.sleep(10000);
+            Thread.sleep(12000);
             updateApp();
-            Thread.sleep(100);
+            Thread.sleep(1000);
             refresh();
             Thread.sleep(4000);
             readItem();
@@ -120,6 +120,9 @@ public class AppZhongQinKanDian extends AbsApp implements ITest {
             LogHandle.d(e.getMessage());
         }
         finally {
+            back();
+            back();
+            back();
             back();
             back();
             back();

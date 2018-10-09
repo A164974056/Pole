@@ -10,7 +10,6 @@ import static java.lang.Thread.*;
 
 public class AppQuDuoPai extends AbsApp implements ITest {
 
-
     AppQuDuoPai() {
         appName = "趣多拍";
     }
@@ -31,7 +30,6 @@ public class AppQuDuoPai extends AbsApp implements ITest {
                 }
             }
         }
-
     }
 
 
@@ -57,13 +55,15 @@ public class AppQuDuoPai extends AbsApp implements ITest {
             lis.get(0).click();
             Thread.sleep(1000+new Random().nextInt(500));
         }
+
         lis = findByText("确定");
         if (lis.size() == 1) {
             lis.get(0).click();
             Thread.sleep(1000+new Random().nextInt(500));
         }
+        else
+            back();
 
-        back();
         Thread.sleep(1000+new Random().nextInt(500));
 
         lis = findByText("首页");
@@ -74,21 +74,18 @@ public class AppQuDuoPai extends AbsApp implements ITest {
             throw new Exception("遇到错误， 未找到我的");
         }
 
-
     }
 
 
     @Override
     public void test()  {
-
-
         try {
             openApp();
-            Thread.sleep(10000);
+            Thread.sleep(12000);
 //            updateApp();
 //            Thread.sleep(500);
             checkIn();
-            Thread.sleep(500+new Random().nextInt(500));
+            Thread.sleep(2000+new Random().nextInt(500));
 //            timepoint();
 //            Thread.sleep(1000);
 //            refresh();
@@ -97,6 +94,9 @@ public class AppQuDuoPai extends AbsApp implements ITest {
         } catch (Exception e) {
             LogHandle.d(e.getMessage());
         } finally {
+            back();
+            back();
+            back();
             back();
             back();
             back();
