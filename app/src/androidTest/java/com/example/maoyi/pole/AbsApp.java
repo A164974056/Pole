@@ -1,5 +1,6 @@
 package com.example.maoyi.pole;
 
+import android.os.SystemClock;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.uiautomator.By;
 import android.support.test.uiautomator.UiDevice;
@@ -52,7 +53,7 @@ public abstract class AbsApp implements IApp, ITest {
         List<UiObject2> lis=findByText("我的");
         if  (lis.size()==1){
             lis.get(0).click();
-            Thread.sleep(1000+new Random().nextInt(500));
+           SystemClock.sleep(1000+new Random().nextInt(500));
         }
         else {
             throw new Exception("遇到错误， 未找到我的");
@@ -61,19 +62,19 @@ public abstract class AbsApp implements IApp, ITest {
         lis=findByID("com.jifen.qukan:id/p2");
         if  (lis.size()==1){
             lis.get(0).click();
-            Thread.sleep(1000+new Random().nextInt(500));
+           SystemClock.sleep(1000+new Random().nextInt(500));
         }
 
         lis=findByText("签到");
         if  (lis.size()==1){
             lis.get(0).click();
-            Thread.sleep(1000+new Random().nextInt(500));
+           SystemClock.sleep(1000+new Random().nextInt(500));
         }
 
         lis=findByText("头条");
         if  (lis.size()==1){
             lis.get(0).click();
-            Thread.sleep(1000+new Random().nextInt(500));
+           SystemClock.sleep(1000+new Random().nextInt(500));
         }
         else {
             throw new Exception("遇到错误， 未找到我的");
@@ -97,11 +98,13 @@ public abstract class AbsApp implements IApp, ITest {
         int count = readCount;
         while (true) {
             String cur = "";
+            count--;
             for (int i = 0; i < 5; i++) {
                 count--;
                 List<UiObject2> lis = findByRegexText(Pattern.compile("\\d{1,9}评"));
                 if (lis.size() > 0) {
                     if (count < 0) {
+                        back();
                         return;
                     }
                     if (cur.equals(lis.get(0).getText())) {
@@ -111,20 +114,21 @@ public abstract class AbsApp implements IApp, ITest {
                     cur = lis.get(0).getText();
                     lis.get(0).click();
                     //region  上下滑动几下
-                    Thread.sleep(2000);
+                   SystemClock.sleep(2000);
                     up(100, 8);
                     dowm(100, 1);
                     //endregion
                     back();
-                }
+            }
                 //往下刷两下
                 up(200);
                 //up(50);
-
                 if (count <0)
                     throw new Exception("遇到未知错误无法在继续读");
-
             }
+            if (count <0)
+                throw new Exception("遇到未知错误无法在继续读");
+
         }
 
     }
@@ -227,7 +231,7 @@ public abstract class AbsApp implements IApp, ITest {
     public void right(int steps, int count) throws InterruptedException {
         for (int i = 0; i < count; i++) {
             right(steps);
-            Thread.sleep(2000 + new Random().nextInt(2000));
+           SystemClock.sleep(2000 + new Random().nextInt(2000));
         }
     }
 
@@ -235,7 +239,7 @@ public abstract class AbsApp implements IApp, ITest {
     public void left(int steps, int count) throws InterruptedException {
         for (int i = 0; i < count; i++) {
             left(steps);
-            Thread.sleep(2000 + new Random().nextInt(2000));
+           SystemClock.sleep(2000 + new Random().nextInt(2000));
         }
     }
 
@@ -243,7 +247,7 @@ public abstract class AbsApp implements IApp, ITest {
     public void up(int steps, int count) throws InterruptedException {
         for (int i = 0; i < count; i++) {
             up(steps);
-            Thread.sleep(2000 + new Random().nextInt(500));
+           SystemClock.sleep(2000 + new Random().nextInt(500));
         }
     }
 
@@ -251,7 +255,7 @@ public abstract class AbsApp implements IApp, ITest {
     public void dowm(int steps, int count) throws InterruptedException {
         for (int i = 0; i < count; i++) {
             dowm(steps);
-            Thread.sleep(2000 + new Random().nextInt(2000));
+           SystemClock.sleep(2000 + new Random().nextInt(2000));
         }
     }
 

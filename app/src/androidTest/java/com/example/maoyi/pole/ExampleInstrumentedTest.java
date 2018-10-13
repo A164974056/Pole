@@ -46,16 +46,22 @@ public class ExampleInstrumentedTest {
 
         if (times > 0) {
             for (int j = 0; j < times; j++) {
-                for (int i = 1; i < temp.length; i++) {
-                    String[] temp_app = temp[i].split("_");
-                    Integer app_index = Integer.parseInt(temp_app[0]);
-                    Integer app_times = Integer.parseInt(temp_app[1]);
-                    if (app_times == 0) {
-                        continue;
+                try {
+                    for (int i = 1; i < temp.length; i++) {
+                        String[] temp_app = temp[i].split("_");
+                        Integer app_index = Integer.parseInt(temp_app[0]);
+                        Integer app_times = Integer.parseInt(temp_app[1]);
+                        if (app_times == 0) {
+                            continue;
+                        }
+                        iTests[app_index].setReadCount(app_times);
+                        iTests[app_index].test();
                     }
-                    iTests[app_index].setReadCount(app_times);
-                    iTests[app_index].test();
                 }
+                catch (Exception e){
+
+                }
+
             }
         }
 

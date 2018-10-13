@@ -1,5 +1,6 @@
 package com.example.maoyi.pole;
 
+import android.os.SystemClock;
 import android.support.test.uiautomator.UiObject2;
 
 import java.util.List;
@@ -41,7 +42,7 @@ public class AppWeiLiKankan extends AbsApp implements ITest {
             if (lis.size() > 0) {
                 lis.get(0).click();
             }
-            Thread.sleep(2000 + new Random().nextInt(500));
+           SystemClock.sleep(2000 + new Random().nextInt(500));
         }
     }
 
@@ -64,7 +65,7 @@ public class AppWeiLiKankan extends AbsApp implements ITest {
             lis.get(lis.size() - 1).click();
         } else
             throw new Exception("遇到未知错误无法在继续读");
-        Thread.sleep(2000);
+       SystemClock.sleep(2000);
         lis = findByID("cn.weli.story:id/ic_close");
         if (lis.size() > 0) {
             lis.get(0).click();
@@ -78,17 +79,17 @@ public class AppWeiLiKankan extends AbsApp implements ITest {
                 lis = findByID("cn.weli.story:id/img_ic_play");
                 if (lis.size()>0){
                     lis.get(lis.size()-1).click();
-                    Thread.sleep(20000 + new Random().nextInt(20000));
+                   SystemClock.sleep(20000 + new Random().nextInt(20000));
                     //endregion
                 }
                 //往下刷两下
                 up(200);
                 //up(50);
-
+                if (count <0)
+                    back();
             }
             if (count <0)
-                back();
-            return;
+                throw new Exception("遇到未知错误无法在继续读");
 
 
         }
@@ -125,7 +126,7 @@ public class AppWeiLiKankan extends AbsApp implements ITest {
                     lis.get(0).click();
 
                     //region  上下滑动几下
-                    Thread.sleep(2000);
+                   SystemClock.sleep(2000);
                     up(100, 8);
                     dowm(100, 1);
                     //endregion
@@ -155,12 +156,12 @@ public class AppWeiLiKankan extends AbsApp implements ITest {
     public void test() {
         try {
             openApp();
-            Thread.sleep(12000);
+           SystemClock.sleep(12000);
             updateApp();
             refresh();
-            Thread.sleep(5000);
+           SystemClock.sleep(5000);
             readItem();
-            Thread.sleep(1000);
+           SystemClock.sleep(1000);
             timepoint();
             readTv();
 

@@ -1,5 +1,6 @@
 package com.example.maoyi.pole;
 
+import android.os.SystemClock;
 import android.support.test.uiautomator.UiObject2;
 
 import java.util.List;
@@ -35,7 +36,7 @@ public class AppZhongQinKanDian extends AbsApp implements ITest {
         List<UiObject2> lis=findByText("我的");
         if  (lis.size()==1){
             lis.get(0).click();
-            Thread.sleep(1000);
+           SystemClock.sleep(1000);
         }
         else {
             throw new Exception("遇到错误， 未找到我的");
@@ -44,19 +45,19 @@ public class AppZhongQinKanDian extends AbsApp implements ITest {
         lis=findByText("任务中心");
         if  (lis.size()==1){
             lis.get(0).click();
-            Thread.sleep(2000);
+           SystemClock.sleep(2000);
         }
 
         lis=findByText("签到");
         if  (lis.size()==1){
             lis.get(0).click();
-            Thread.sleep(1000);
+           SystemClock.sleep(1000);
         }
 
         lis=findByText("头条");
         if  (lis.size()==1){
             lis.get(0).click();
-            Thread.sleep(1000);
+           SystemClock.sleep(1000);
         }
         else {
             throw new Exception("遇到错误， 未找到我的");
@@ -76,6 +77,7 @@ public class AppZhongQinKanDian extends AbsApp implements ITest {
                 if (lis.size() > 0) {
 
                     if (readCount < 0) {
+                        back();
                         return;
                     }
 
@@ -86,7 +88,7 @@ public class AppZhongQinKanDian extends AbsApp implements ITest {
                     lis.get(0).click();
 
                     //region  上下滑动几下
-                    Thread.sleep(2000);
+                   SystemClock.sleep(2000);
                     up(100, 8);
                     dowm(100, 1);
                     //endregion
@@ -96,10 +98,14 @@ public class AppZhongQinKanDian extends AbsApp implements ITest {
                 up(200);
                 //up(50);
 
-                if (count == readCount)
+                if (readCount < 0)
                     throw new Exception("遇到未知错误无法在继续读");
 
             }
+
+            if (readCount < 0)
+                throw new Exception("遇到未知错误无法在继续读");
+
         }
 
     }
@@ -110,11 +116,11 @@ public class AppZhongQinKanDian extends AbsApp implements ITest {
 
         try {
             openApp();
-            Thread.sleep(12000);
+           SystemClock.sleep(12000);
             updateApp();
-            Thread.sleep(1000);
+           SystemClock.sleep(1000);
             refresh();
-            Thread.sleep(4000);
+           SystemClock.sleep(4000);
             readItem();
         } catch (Exception e) {
             LogHandle.d(e.getMessage());
