@@ -32,13 +32,13 @@ public class ExampleInstrumentedTest {
 
     @Test
     public void demo() throws Exception {
-        ITest[] iTests = new ITest[]{new AppQuTaoTiao(), new AppQuDuoPai(), new AppZhongQinKanDian(),new AppWeiLiKankan()};
-        Bundle a = InstrumentationRegistry.getArguments();
+        ITest[] iTests = new ITest[]{new AppQuTaoTiao(), new AppQuDuoPai(), new AppZhongQinKanDian(),new AppWeiLiKankan(),new AppHuiTaoTiao()};
+    Bundle a = InstrumentationRegistry.getArguments();
 
-        String bb = a.getString("key");
+        //String bb = a.getString("key");
 
 
-        //String bb="2#1_10";
+        String bb="2#0_1#1_5#4_1";
 
         assert bb != null;
         String[] temp = bb.split("#");
@@ -61,7 +61,6 @@ public class ExampleInstrumentedTest {
                 catch (Exception e){
 
                 }
-
             }
         }
 

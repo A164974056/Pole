@@ -105,6 +105,7 @@ public class AppWeiLiKankan extends AbsApp implements ITest {
 
             String cur = "";
             for (int i = 0; i < 5; i++) {
+                count--;
                 List<UiObject2> lis = findByID("cn.weli.story:id/tv_from");
                 if (lis.size() > 0) {
                     if (lis.get(0).getParent().getChildCount() == 3) {
@@ -135,9 +136,11 @@ public class AppWeiLiKankan extends AbsApp implements ITest {
                 //往下刷两下
                 up(200);
                 //up(50);
-
-
             }
+            if (count < 0) {
+                throw new Exception("遇到未知错误无法在继续读");
+            }
+
         }
 
     }

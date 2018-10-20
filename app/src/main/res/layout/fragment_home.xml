@@ -20,9 +20,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <TextView
-                        android:text="@string/qutaotiao"
-                        tools:ignore="HardcodedText" />
+                    <CheckBox
+                        android:id="@+id/checkqtt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/qutaotiao" />
+
+
 
                     <EditText
                         android:id="@+id/qtt"
@@ -53,9 +57,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                <TextView
-                        android:text="@string/quduopai"
-                        tools:ignore="HardcodedText" />
+
+                <CheckBox
+                    android:id="@+id/checkquduopai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/quduopai" />
+
+
 
                     <EditText
                         android:id="@+id/qdp"
@@ -79,9 +88,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <TextView
-                        android:text="@string/zhongqingkandian"
-                        tools:ignore="HardcodedText" />
+
+                    <CheckBox
+                        android:id="@+id/checkzhongqingkandian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/zhongqingkandian" />
 
                     <EditText
                         android:id="@+id/zqkd"
@@ -105,9 +117,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <TextView
-                    android:text="@string/wlkk"
-                    tools:ignore="HardcodedText" />
+
+                <CheckBox
+                    android:id="@+id/checkwlkk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/wlkk" />
+
+
+
 
                 <EditText
                     android:id="@+id/wlkk"
@@ -120,6 +138,35 @@
 
                 <TextView
                     android:id="@+id/textView1111"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/times" />
+
+
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <CheckBox
+                    android:id="@+id/chechtt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/htt" />
+
+
+                <EditText
+                    android:id="@+id/htt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="5"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:text="0" />
+
+                <TextView
+                    android:id="@+id/textView111122"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/times" />

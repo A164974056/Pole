@@ -30,6 +30,9 @@ public class AppQuDuoPai extends AbsApp implements ITest {
                     return;
                 }
             }
+            if (readCount < 0) {
+                throw new Exception("遇到错误， 未找到我的");
+        }
         }
     }
 
@@ -82,11 +85,11 @@ public class AppQuDuoPai extends AbsApp implements ITest {
     public void test()  {
         try {
             openApp();
-           SystemClock.sleep(12000);
+            SystemClock.sleep(12000);
 //            updateApp();
 //           SystemClock.sleep(500);
-            checkIn();
-           SystemClock.sleep(2000+new Random().nextInt(500));
+            //checkIn();
+          // SystemClock.sleep(2000+new Random().nextInt(500));
 //            timepoint();
 //           SystemClock.sleep(1000);
 //            refresh();

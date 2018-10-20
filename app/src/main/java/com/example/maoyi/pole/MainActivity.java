@@ -21,6 +21,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -261,14 +262,34 @@ public class MainActivity extends AppCompatActivity {
          */
         String generateCommand(String pkgName, String clsName, String mtdName) {
 
-            int qtt= parseInt(((EditText)findViewById(R.id.qtt)).getText().toString());
-            int zqkd=parseInt(((EditText)findViewById(R.id.zqkd)).getText().toString());
-            int qdp=parseInt(((EditText)findViewById(R.id.qdp)).getText().toString());
-
-            int wlkk=parseInt(((EditText)findViewById(R.id.wlkk)).getText().toString());
             int times=parseInt(((EditText)findViewById(R.id.times)).getText().toString());
 
-            String s=times+ "#"+0+"_"+qtt + "#"+1+"_"+zqkd+ "#"+2+"_"+qdp+ "#"+3+"_"+wlkk;
+            String s=times+"";
+            //+ "#"+0+"_"+qtt + "#"+1+"_"+zqkd+ "#"+2+"_"+qdp+ "#"+3+"_"+wlkk+ "#"+4+"_"+htt;
+
+            if(((CheckBox)findViewById(R.id.checkqtt)).isChecked()){
+                int qtt= parseInt(((EditText)findViewById(R.id.qtt)).getText().toString());
+                s+="#"+0+"_"+qtt;
+            }
+            if(((CheckBox)findViewById(R.id.checkzhongqingkandian)).isChecked()) {
+                int zqkd = parseInt(((EditText) findViewById(R.id.zqkd)).getText().toString());
+                s+="#"+1+"_"+zqkd;
+            }
+            if(((CheckBox)findViewById(R.id.checkquduopai)).isChecked()) {
+                int qdp = parseInt(((EditText) findViewById(R.id.qdp)).getText().toString());
+                s+="#"+2+"_"+qdp;
+        }
+            if(((CheckBox)findViewById(R.id.checkwlkk)).isChecked()) {
+            int wlkk=parseInt(((EditText)findViewById(R.id.wlkk)).getText().toString());
+                s+="#"+3+"_"+wlkk;
+            }
+            if(((CheckBox)findViewById(R.id.chechtt)).isChecked()) {
+
+            int htt=parseInt(((EditText)findViewById(R.id.htt)).getText().toString());
+                s+="#"+3+"_"+htt;
+            }
+
+
 
             String command = "su -c am instrument --user 0 -w -r -e debug false -e key "+s+" -e class '"
                     + pkgName + "." + clsName + "#" + mtdName + "' "
