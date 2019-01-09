@@ -286,7 +286,7 @@ public class MainActivity extends AppCompatActivity {
             if(((CheckBox)findViewById(R.id.chechtt)).isChecked()) {
 
             int htt=parseInt(((EditText)findViewById(R.id.htt)).getText().toString());
-                s+="#"+3+"_"+htt;
+                s+="#"+4+"_"+htt;
             }
 
 

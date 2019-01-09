@@ -1,5 +1,6 @@
 package com.example.maoyi.pole;
 
+import android.os.Handler;
 import android.os.SystemClock;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.uiautomator.By;
@@ -17,12 +18,13 @@ public abstract class AbsApp implements IApp, ITest {
     public String appName;
 
 
-    public  String appOpenFlag="首页";
+    public String appOpenFlag = "首页";
 
     public int readCount;
 
     private int height;
     private int width;
+
 
 
     @Override

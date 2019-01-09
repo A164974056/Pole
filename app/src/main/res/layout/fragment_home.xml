@@ -62,7 +62,7 @@
                     android:id="@+id/checkquduopai"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/quduopai" />
+                    android:text="@string/zhongqingkandian" />
 
 
 
@@ -93,7 +93,7 @@
                         android:id="@+id/checkzhongqingkandian"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/zhongqingkandian" />
+                        android:text="@string/quduopai" />
 
                     <EditText
                         android:id="@+id/zqkd"

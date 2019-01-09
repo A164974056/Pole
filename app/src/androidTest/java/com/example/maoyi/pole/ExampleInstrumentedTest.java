@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
+import android.util.Log;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,6 +22,7 @@ import static org.junit.Assert.*;
  */
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
+
     @Test
     public void useAppContext() {
         // Context of the app under test.
@@ -32,13 +34,13 @@ public class ExampleInstrumentedTest {
 
     @Test
     public void demo() throws Exception {
-        ITest[] iTests = new ITest[]{new AppQuTaoTiao(), new AppQuDuoPai(), new AppZhongQinKanDian(),new AppWeiLiKankan(),new AppHuiTaoTiao()};
-    Bundle a = InstrumentationRegistry.getArguments();
+        ITest[] iTests = new ITest[]{new AppQuTaoTiao(), new AppQuDuoPai(), new AppZhongQinKanDian(), new AppWeiLiKankan(), new AppHuiTaoTiao()};
+        Bundle a = InstrumentationRegistry.getArguments();
 
-        //String bb = a.getString("key");
+        String bb = a.getString("key");
 
 
-        String bb="2#0_1#1_5#4_1";
+        //String bb="4#0_10#1_10#4_10";
 
         assert bb != null;
         String[] temp = bb.split("#");
@@ -57,9 +59,8 @@ public class ExampleInstrumentedTest {
                         iTests[app_index].setReadCount(app_times);
                         iTests[app_index].test();
                     }
-                }
-                catch (Exception e){
-
+                } catch (Exception e) {
+                    LogHandle.e(e.getMessage());
                 }
             }
         }
