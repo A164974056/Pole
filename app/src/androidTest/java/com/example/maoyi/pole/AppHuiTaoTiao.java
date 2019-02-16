@@ -67,7 +67,7 @@ public class AppHuiTaoTiao extends AbsApp implements ITest {
                     cur = lis.get(0).getText();
                     lis.get(0).click();
                     //region  上下滑动几下
-                    SystemClock.sleep(2000);
+                   sleep(2000);
                     up(100, 8);
                     dowm(100, 1);
                     //endregion

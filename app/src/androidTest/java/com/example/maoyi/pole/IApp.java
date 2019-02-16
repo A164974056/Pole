@@ -112,4 +112,9 @@ public interface IApp {
     定义怎么读取咨询
      */
     void readItem() throws Exception;
+
+    /*
+    睡眠
+     */
+    void sleep(long s) throws InterruptedException;
 }
