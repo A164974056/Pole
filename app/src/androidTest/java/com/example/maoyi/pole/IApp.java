@@ -24,7 +24,7 @@ public interface IApp {
     List<UiObject2> findByID(String id);
 
 
-
+   List<UiObject2>   findByID(Pattern pattern);
     /*
     点击 某个 Item的方法
      */
