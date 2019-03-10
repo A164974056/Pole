@@ -23,7 +23,7 @@ public class AppQuDuoPai extends AbsApp implements ITest {
                 List<UiObject2> lis = findByText("首页");
                 if (lis.size() == 1) {
                     lis.get(0).click();
-                   SystemClock.sleep(10000+new Random().nextInt(10000));
+                  sleep(10000+new Random().nextInt(10000));
                 }
                 readCount--;
                 if (readCount < 0) {
@@ -43,7 +43,7 @@ public class AppQuDuoPai extends AbsApp implements ITest {
         List<UiObject2> lis = findByText("我的");
         if (lis.size() == 1) {
             lis.get(0).click();
-           SystemClock.sleep(2000+new Random().nextInt(500));
+          sleep(2000+new Random().nextInt(500));
         } else {
             throw new Exception("遇到错误， 未找到我的");
         }
@@ -51,29 +51,29 @@ public class AppQuDuoPai extends AbsApp implements ITest {
         lis = findByID("com.xike.yipai:id/img_pex2header_message");
         if (lis.size() == 1) {
             lis.get(0).click();
-           SystemClock.sleep(1000+new Random().nextInt(500));
+          sleep(1000+new Random().nextInt(500));
         }
 
         lis = findByID("com.xike.yipai:id/message_task_action");
         if (lis.size() == 1) {
             lis.get(0).click();
-           SystemClock.sleep(1000+new Random().nextInt(500));
+          sleep(1000+new Random().nextInt(500));
         }
 
         lis = findByText("确定");
         if (lis.size() == 1) {
             lis.get(0).click();
-           SystemClock.sleep(1000+new Random().nextInt(500));
+          sleep(1000+new Random().nextInt(500));
         }
         else
             back();
 
-       SystemClock.sleep(1000+new Random().nextInt(500));
+      sleep(1000+new Random().nextInt(500));
 
         lis = findByText("首页");
         if (lis.size() == 1) {
             lis.get(0).click();
-           SystemClock.sleep(1000+new Random().nextInt(500));
+          sleep(1000+new Random().nextInt(500));
         } else {
             throw new Exception("遇到错误， 未找到我的");
         }
@@ -85,15 +85,15 @@ public class AppQuDuoPai extends AbsApp implements ITest {
     public void test()  {
         try {
             openApp();
-            SystemClock.sleep(12000);
+           sleep(12000);
 //            updateApp();
-//           SystemClock.sleep(500);
+//          sleep(500);
             //checkIn();
-          // SystemClock.sleep(2000+new Random().nextInt(500));
+          //sleep(2000+new Random().nextInt(500));
 //            timepoint();
-//           SystemClock.sleep(1000);
+//          sleep(1000);
 //            refresh();
-//           SystemClock.sleep(5000);
+//          sleep(5000);
             readItem();
         } catch (Exception e) {
             LogHandle.d(e.getMessage());

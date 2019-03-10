@@ -24,15 +24,18 @@ public class AppQuTaoTiao extends AbsApp {
     public void test() {
         try {
             openApp();
-            SystemClock.sleep(12000);
+
+
+            sleep(12000);
+
             updateApp();
-            SystemClock.sleep(2000);
+            sleep(2000);
             checkIn();
-            SystemClock.sleep(2000);
+            sleep(2000);
             timepoint();
-            SystemClock.sleep(2000);
+            sleep(2000);
             refresh();
-            SystemClock.sleep(5000);
+            sleep(5000);
             readItem();
         } catch (Exception e) {
             LogHandle.d(e.getMessage());

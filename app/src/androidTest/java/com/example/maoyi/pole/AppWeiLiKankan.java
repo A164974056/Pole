@@ -42,7 +42,7 @@ public class AppWeiLiKankan extends AbsApp implements ITest {
             if (lis.size() > 0) {
                 lis.get(0).click();
             }
-           SystemClock.sleep(2000 + new Random().nextInt(500));
+          sleep(2000 + new Random().nextInt(500));
         }
     }
 
@@ -65,7 +65,7 @@ public class AppWeiLiKankan extends AbsApp implements ITest {
             lis.get(lis.size() - 1).click();
         } else
             throw new Exception("遇到未知错误无法在继续读");
-       SystemClock.sleep(2000);
+      sleep(2000);
         lis = findByID("cn.weli.story:id/ic_close");
         if (lis.size() > 0) {
             lis.get(0).click();
@@ -79,7 +79,7 @@ public class AppWeiLiKankan extends AbsApp implements ITest {
                 lis = findByID("cn.weli.story:id/img_ic_play");
                 if (lis.size()>0){
                     lis.get(lis.size()-1).click();
-                   SystemClock.sleep(20000 + new Random().nextInt(20000));
+                  sleep(20000 + new Random().nextInt(20000));
                     //endregion
                 }
                 //往下刷两下
@@ -127,7 +127,7 @@ public class AppWeiLiKankan extends AbsApp implements ITest {
                     lis.get(0).click();
 
                     //region  上下滑动几下
-                   SystemClock.sleep(2000);
+                  sleep(2000);
                     up(100, 8);
                     dowm(100, 1);
                     //endregion
@@ -159,12 +159,12 @@ public class AppWeiLiKankan extends AbsApp implements ITest {
     public void test() {
         try {
             openApp();
-           SystemClock.sleep(12000);
+          sleep(12000);
             updateApp();
             refresh();
-           SystemClock.sleep(5000);
+          sleep(5000);
             readItem();
-           SystemClock.sleep(1000);
+          sleep(1000);
             timepoint();
             readTv();
 

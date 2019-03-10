@@ -40,7 +40,7 @@ public class ExampleInstrumentedTest {
         String bb = a.getString("key");
 
 
-        //String bb="4#0_10#1_10#4_10";
+        //String bb="4#0_10";
 
         assert bb != null;
         String[] temp = bb.split("#");
